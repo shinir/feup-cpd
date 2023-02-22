@@ -104,9 +104,9 @@ void OnMultLine(int m_ar, int m_br)
     Time1 = clock();
 
 	for(i=0; i<m_ar; i++)
-	{   for( k=0; k<m_ar; k++)
+	{   for( j=0; j<m_ar; j++)
 		{	temp = 0;
-			for( j=0; j<m_br; j++)
+			for( k=0; k<m_br; k++)
 			{	
 				temp += pha[i*m_ar+k] * phb[k*m_br+j];
 			}
@@ -137,10 +137,64 @@ void OnMultLine(int m_ar, int m_br)
 // add code here for block x block matriz multiplication
 void OnMultBlock(int m_ar, int m_br, int bkSize)
 {
-    
-    
-}
+    SYSTEMTIME Time1, Time2;
+    char st[100];
 
+    // Allocate memory for matrices
+    double* a = (double*)malloc((m_ar * m_ar) * sizeof(double));
+    double* b = (double*)malloc((m_ar * m_ar) * sizeof(double));
+    double* c = (double*)malloc((m_ar * m_ar) * sizeof(double));
+
+    // Initialize matrices a and b
+    for (int i = 0; i < m_ar; i++) {
+        for (int j = 0; j < m_ar; j++) {
+            a[i * m_ar + j] = (double)1.0;
+        }
+    }
+
+    for (int i = 0; i < m_br; i++) {
+        for (int j = 0; j < m_br; j++) {
+            b[i * m_br + j] = (double)(i + 1);
+        }
+    }
+
+    // Perform block matrix multiplication
+    Time1 = clock();
+    for (int ii = 0; ii < m_ar; ii += bkSize) {
+        for (int jj = 0; jj < m_br; jj += bkSize) {
+            for (int kk = 0; kk < m_ar; kk += bkSize) {
+                // Perform multiplication on blocks of size bkSize
+                for (int i = ii; i < min(ii + bkSize, m_ar); i++) {
+                    for (int j = jj; j < min(jj + bkSize, m_br); j++) {
+                        double sum = 0;
+                        for (int k = kk; k < min(kk + bkSize, m_ar); k++) {
+                            sum += a[i * m_ar + k] * b[k * m_br + j];
+                        }
+                        c[i * m_ar + j] += sum;
+                    }
+                }
+            }
+        }
+    }
+    Time2 = clock();
+
+    sprintf(st, "Time: %3.3f seconds\n", (double)(Time2 - Time1) / CLOCKS_PER_SEC);
+    cout << st;
+
+    // Display 10 elements of the result matrix to verify correctness
+    cout << "Result matrix: " << endl;
+    for (int i = 0; i < 1; i++) {
+        for (int j = 0; j < min(10, m_br); j++) {
+            cout << c[j] << " ";
+        }
+    }
+    cout << endl;
+
+    // Free memory
+    free(a);
+    free(b);
+    free(c);
+}
 
 
 void handle_error (int retval)
