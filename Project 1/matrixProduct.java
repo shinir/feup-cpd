@@ -1,4 +1,3 @@
-import java.util.Calendar;
 import java.lang.Math;
 import java.util.*;
 
@@ -7,19 +6,15 @@ class matrixProduct {
     public static final int SIZE_OF_DOUBLE = 8;
     
     static void OnMult(int m_ar, int m_br) {
-        
-        long time1, time2;
-
-        double temp;
+        double time1, time2, temp;
         int i, j, k;
 
         double[] pha, phb, phc;
 
-        pha = new double[(m_ar * m_ar) * SIZE_OF_DOUBLE];
-        phb = new double[(m_ar * m_ar) * SIZE_OF_DOUBLE];
-        phc = new double[(m_ar * m_ar) * SIZE_OF_DOUBLE];
+        pha = new double[(m_ar * m_br)];
+        phb = new double[(m_ar * m_br)];
+        phc = new double[(m_ar * m_br)];
         
-        /*
         for(i = 0; i < m_ar; i++) {
             for(j=0; j < m_ar; j++)
 			    pha[i * m_ar + j] = (double)1.0;
@@ -29,9 +24,8 @@ class matrixProduct {
             for(j=0; j < m_br; j++)
 			    pha[i * m_br + j] = (double)i+1;
         }
-        */
 
-        time1 = Calendar.getInstance().getTimeInMillis();
+        time1 = System.nanoTime();
 
         for(i = 0; i < m_ar; i++) {
             for(j=0; j < m_br; j++) {
@@ -43,21 +37,61 @@ class matrixProduct {
             }
         }
 
-        time2 = Calendar.getInstance().getTimeInMillis();
+        time2 = System.nanoTime();
 
-        System.out.printf("Time: %3.3f seconds\n", (time2 - time1));
+        System.out.printf("Time: %3.3f" + "seconds\n", (time2-time1)/(Math.pow(10, 9)));
         System.out.println("Result matrix:");
 
         for(i = 0; i < 1; i++) {
-            for(j = 0; j < Math.min(10, m_br); j++) {
-                System.out.println(phc[j] + " ");
+            for(j = 0; j < Math.min(10,m_br); j++) {
+                System.out.println(phc[j]);
             }
         }
     }
 
     static void OnMultLine(int m_ar, int m_br) {
 
+        double time1, time2, temp;
+        int i, j, k;
 
+        double[] pha, phb, phc;
+
+        pha = new double[(m_ar * m_br)];
+        phb = new double[(m_ar * m_br)];
+        phc = new double[(m_ar * m_br)];
+        
+        for(i = 0; i < m_ar; i++) {
+            for(j=0; j < m_ar; j++)
+			    pha[i * m_ar + j] = (double)1.0;
+        }
+
+        for(i = 0; i < m_br; i++) {
+            for(j=0; j < m_br; j++)
+			    pha[i * m_br + j] = (double)i+1;
+        }
+
+        time1 = System.nanoTime();
+
+        for(i=0; i<m_ar; i++) {
+            for(j=0; j<m_ar; j++) {
+                temp = 0;
+                for(k=0; k<m_br; k++) {
+                    temp += pha[i*m_ar+k] * phb[k*m_br+j];
+                }
+                phc[i*m_ar+j] = temp;
+            }
+        }
+
+        time2 = System.nanoTime();
+
+        System.out.printf("Time: %3.3f" + "seconds\n", (time2-time1)/(Math.pow(10, 9)));
+        System.out.println("Result matrix:");
+
+        for(i = 0; i < 1; i++) {
+            for(j = 0; j < Math.min(10,m_br); j++) {
+                System.out.println(phc[j]);
+            }
+        }
 
     }
 
@@ -73,7 +107,7 @@ class matrixProduct {
 
         Scanner sc = new Scanner(System.in);
 
-        op=1;
+        op = 1;
         do {
             System.out.println("1. Multiplication");
             System.out.println("2. Line Multiplication");
@@ -105,5 +139,7 @@ class matrixProduct {
             }    
     
         } while (op != 0);
+
+        sc.close();
     }
 }
