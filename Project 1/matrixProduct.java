@@ -16,13 +16,15 @@ class matrixProduct {
         phc = new double[(m_ar * m_br)];
         
         for(i = 0; i < m_ar; i++) {
-            for(j=0; j < m_ar; j++)
-			    pha[i * m_ar + j] = (double)1.0;
+            for(j=0; j < m_ar; j++) {
+                pha[i * m_ar + j] = (double)1.0;
+            }
         }
 
         for(i = 0; i < m_br; i++) {
-            for(j=0; j < m_br; j++)
-			    pha[i * m_br + j] = (double)i+1;
+            for(j=0; j < m_br; j++) {
+			    phb[i * m_br + j] = (double)i+1;
+            }
         }
 
         time1 = System.nanoTime();
@@ -44,7 +46,7 @@ class matrixProduct {
 
         for(i = 0; i < 1; i++) {
             for(j = 0; j < Math.min(10,m_br); j++) {
-                System.out.println(phc[j]);
+                System.out.print(phc[j] + " ");
             }
         }
     }
@@ -113,13 +115,15 @@ class matrixProduct {
             System.out.println("2. Line Multiplication");
             System.out.println("3. Block Multiplication");
             System.out.println("0. Exit");
-            System.out.println("Selection: ");
+            System.out.print("Selection: ");
             op = sc.nextInt();
+            System.out.println("");
             if (op == 0)
                 break;
-            System.out.println("Dimensions: lins=cols ? ");
-                lin = sc.nextInt();
-                col = lin;
+            System.out.print("Dimensions: lins=cols ? ");
+            lin = sc.nextInt();
+            col = lin;
+            System.out.println("");
     
             switch (op){
                 case 1: 
