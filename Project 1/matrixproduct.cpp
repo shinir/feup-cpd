@@ -3,7 +3,7 @@
 #include <iomanip>
 #include <time.h>
 #include <cstdlib>
-#include <../CPD/papi/src/papi.h>
+#include <papi.h>
 
 using namespace std;
 
@@ -78,7 +78,6 @@ void OnMultLine(int m_ar, int m_br)
 	SYSTEMTIME Time1, Time2;
 	
 	char st[100];
-	double temp;
 	int i, j, k;
 
 	double *pha, *phb, *phc;
@@ -103,14 +102,11 @@ void OnMultLine(int m_ar, int m_br)
 
     Time1 = clock();
 
-	for(i=0; i<m_ar; i++)
-	{   for( j=0; j<m_ar; j++)
-		{	temp = 0;
-			for( k=0; k<m_br; k++)
-			{	
-				temp += pha[i*m_ar+k] * phb[k*m_br+j];
+	for(i=0; i<m_ar; i++) {   
+		for( k=0; k<m_ar; k++) {
+			for( j=0; j<m_br; j++) {	
+				phc[i*m_ar+j] += pha[i*m_ar+k] * phb[k*m_br+j];
 			}
-			phc[i*m_ar+j]=temp;
 		}
 	}
 
@@ -164,13 +160,11 @@ void OnMultBlock(int m_ar, int m_br, int bkSize)
         for (int jj = 0; jj < m_br; jj += bkSize) {
             for (int kk = 0; kk < m_ar; kk += bkSize) {
                 // Perform multiplication on blocks of size bkSize
-                for (int i = ii; i < min(ii + bkSize, m_ar); i++) {
-                    for (int j = jj; j < min(jj + bkSize, m_br); j++) {
-                        double sum = 0;
-                        for (int k = kk; k < min(kk + bkSize, m_ar); k++) {
-                            sum += a[i * m_ar + k] * b[k * m_br + j];
+                for (int i = 0; i < bkSize; i++) {
+                    for (int k = 0; k < bkSize; k++) {
+                        for (int j = 0; j < bkSize; j++) {
+                            c[(i+ii) * m_ar + (j+jj)] += a[(i+ii) * m_ar + (k+kk)] * b[(k+kk) * m_br + (j+jj)];
                         }
-                        c[i * m_ar + j] += sum;
                     }
                 }
             }
