@@ -49,6 +49,7 @@ class matrixProduct {
                 System.out.print(phc[j] + " ");
             }
         }
+        System.out.println("");
     }
 
     static void OnMultLine(int m_ar, int m_br) {
@@ -69,7 +70,7 @@ class matrixProduct {
 
         for(i = 0; i < m_br; i++) {
             for(j=0; j < m_br; j++)
-			    pha[i * m_br + j] = (double)i+1;
+			    phb[i * m_br + j] = (double)i+1;
         }
 
         time1 = System.nanoTime();
@@ -92,7 +93,7 @@ class matrixProduct {
                 System.out.println(phc[j]);
             }
         }
-
+        System.out.println("");
     }
 
     public static void main(String[] args) {
