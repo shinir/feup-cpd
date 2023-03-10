@@ -21,17 +21,44 @@ O primeiro exercício deste trabalho envolvia a multiplicação de matrizes pelo
 
 ![Image.png](https://lh4.googleusercontent.com/_GnNICo7t-ZLB7jtIjdulsGbhZN4iuX-tdVnz0bWIvkHX4LkLkc6h8E-yeQfqSNfAlyCJNpqIqt7kvGFOsqlFSFESoSan6RR1hoLg7ePZ2IXLk1z0rxYZEYfxNgCFvDJboyWjkbJ_x5Fh21ttjI7mXE)
 
-```
-
+```c++
+for(i=0; i<m_ar; i++){
+  for(j=0; j<m_br; j++){
+    temp = 0;
+    for(k=0; k<m_ar; k++){
+      temp += pha[i*m_ar+k] * phb[k*m_br+j];
+    }
+    phc[i*m_ar+j]=temp;
+  }
+}
 ```
 
 #### Multiplicação por linhas
 
 Se no primeiro exercício multiplicamos os elementos da linha i de A pelos elementos da coluna j de B, nesta segunda alínea iremos multiplicar os elementos da linha i de A pelos elementos da linha i de B, verificando se existe alguma diferença de desempenho por parte do cpu.
 
+```c++
+for(i=0; i<m_ar; i++)
+  for( k=0; k<m_ar; k++)
+    for( j=0; j<m_br; j++)
+      phc[i*m_ar+j] += pha[i*m_ar+k] * phb[k*m_br+j];
+```
+
 #### Multiplicação em bloco
 
 Agora, neste terceiro exercício, temos como objetivo dividir as nossas matrizes A e B em várias submatrizes e de seguida calcular a matriz resultado. Para isso, utilizaremos o primeiro método, ou seja, o método algébrico. Iremos, portanto, analisar se o facto de dividir a matriz em partes mais pequenas contribui para diferenças no número de operações realizadas pelo processador.
+
+```c++
+for (int ii = 0; ii < m_ar; ii += bkSize) 
+  for (int jj = 0; jj < m_br; jj += bkSize) 
+    for (int kk = 0; kk < m_ar; kk += bkSize) 
+      // Perform multiplication on blocks of size bkSize
+      for (int i = 0; i < bkSize; i++) 
+        for (int k = 0; k < bkSize; k++) 
+          for (int j = 0; j < bkSize; j++) 
+            c[(i+ii) * m_ar + (j+jj)] += a[(i+ii) * m_ar + (k+kk)] * b[(k+kk) * m_br + (j+jj)];
+          
+```
 
 ## Métricas de Desempenho
 
