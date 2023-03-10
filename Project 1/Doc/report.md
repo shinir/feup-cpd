@@ -5,9 +5,9 @@ In this project, we will study the effect on the processor performance of the me
 ## Index
 
 - [Descrição do problema e explicação dos algoritmos](#descrição-do-problema-e-explicação-dos-algoritmos)
-- [Métricas de Desempenho](craftdocs://open?blockId=778286D2-432B-4E9A-87D7-398F598906FC&spaceId=7bd061cb-19dc-2671-33a3-185afbdd05f9)
-- [Resultados e Análise](craftdocs://open?blockId=0F91E7E7-FAD4-4E09-B6E9-3B42887F1743&spaceId=7bd061cb-19dc-2671-33a3-185afbdd05f9)
-- [Conclusão](craftdocs://open?blockId=F24A6FE1-2C53-4331-8391-5F65F313D16A&spaceId=7bd061cb-19dc-2671-33a3-185afbdd05f9)
+- [Métricas de Desempenho](#métricas-de-desempenho)
+- [Resultados e Análise](#resultados-e-análise)
+- [Conclusão](#conclusão)
 
 ## Descrição do problema e explicação dos algoritmos
 
@@ -43,31 +43,111 @@ Na avaliação de resultados tivemos também em conta a  dimensão das matrizes
 
 **C++ Performance:**
 
-| Size | Time (s) | Level 1 DCM | Level 2 DCM |
-| ---- | -------- | ----------- | ----------- |
-| 600  | 0,182    | 244776051   | 37737956    |
-| 1000 | 0,977    | 1228428924  | 214386260   |
-| 1400 | 3,057    | 3508798196  | 530845856   |
-| 1800 | 16,808   | 9092784330  | 3150759350  |
-| 2200 | 37,375   | 17631135986 | 18512819143 |
-| 2600 | 67,284   | 30907455725 | 46183298297 |
-| 3000 | 113,543  | 50296860285 | 94674304564 |
-
-![C++ Basic Multiplication DCM.png](https://res.craft.do/user/full/7bd061cb-19dc-2671-33a3-185afbdd05f9/A7804C16-BE9C-49CA-A0A7-84DC6B866417_2/tGqmwyCLiBs9np4AYthlmC15hyjnEkXKEjxZPiKQUmwz/C%20Basic%20Multiplication%20DCM.png)
+<table align=center>
+  <td>
+    <table> 
+        <tr>
+          <td>Size</td>
+          <td>Time (s)</td>
+          <td>Level 1 DCM</td>
+          <td>Level 2 DCM</td>
+        </tr>
+        <tr>
+          <td>600</td>
+          <td>0,182</td>
+          <td>244776051</td>
+          <td>37737956</td>
+        </tr>
+        <tr>
+          <td>1000</td>
+          <td>0,977</td>
+          <td>1228428924</td>
+          <td>214386260</td>
+        </tr>
+        <tr>
+          <td>1400</td>
+          <td>3,057</td>
+          <td>3508798196</td>
+          <td>530845856</td>
+        </tr>
+        <tr>
+          <td>1800</td>
+          <td>16,808</td>
+          <td>9092784330</td>
+          <td>3150759350</td>
+        </tr>
+        <tr>
+          <td>2200</td>
+          <td>37,375</td>
+          <td>17631135986</td>
+          <td>18512819143</td>
+        </tr>
+        <tr>
+          <td>2600</td>
+          <td>67,284</td>
+          <td>30907455725</td>
+          <td>46183298297</td>
+        </tr>
+        <tr>
+          <td>3000</td>
+          <td>113,543</td>
+          <td>50296860285</td>
+          <td>94674304564</td>
+        </tr>
+      </table>
+  </td>
+  <td>
+    <img style="width:350px" src="../Results and Analysis/C++ Basic Multiplication DCM.png"/>
+    <p align=center>Figura 1: C++ Basic Multiplication DCM</p>
+  </td>
+</table>
 
 Através da análise dos dados da tabela, é possível concluir que o tamanho da matriz e o tempo de execução são diretamente proporcionais. Em relação aos *data cache misses* podemos seguir a mesma conclusão, sabendo que quanto maior a matriz mais memória é acessada.
 
 **Java Performance:**
 
-| Size | Time (s) |
-| ---- | -------- |
-| 600  | 0,443    |
-| 1000 | 1,533    |
-| 1400 | 4,974    |
-| 1800 | 18,959   |
-| 2200 | 39,835   |
-| 2600 | 70,101   |
-| 3000 | 114,679  |
+<table align=center>
+  <td>
+    <table>
+      <tr>
+          <td>Size</td>
+          <td>Time (s)</td>
+      </tr>
+      <tr>
+          <td>600</td>
+          <td>0,443</td>
+      </tr>
+      <tr>
+          <td>1000</td>
+          <td>1,533</td>
+      </tr>
+      <tr>
+          <td>1400</td>
+          <td>4,974</td>
+      </tr>
+    </table>
+  </td>
+  <td>
+    <table>
+      <tr>
+          <td>1800</td>
+          <td>18,959</td>
+      </tr>
+      <tr>
+          <td>2200</td>
+          <td>39,835</td>
+      </tr>
+      <tr>
+          <td>2600</td>
+          <td>70,101</td>
+      </tr>
+      <tr>
+          <td>3000</td>
+          <td>114,679</td>
+      </tr>
+    </table>
+  </td>
+</table>
 
 Tal como na prévia análise, sabemos que com o o aumento do tamanho da matriz é possível verificar um acréscimo de tempo na sua execução.
 
@@ -75,46 +155,151 @@ Tal como na prévia análise, sabemos que com o o aumento do tamanho da matriz �
 
 **C++ Performance:**
 
-| Size | Time (s) | Level 1 DCM | Level 2 DCM |
-| ---- | -------- | ----------- | ----------- |
-| 600  | 0,091    | 27102899    | 56652910    |
-| 1000 | 0,43     | 125786944   | 261062955   |
-| 1400 | 1,514    | 346297957   | 700121534   |
-| 1800 | 3,183    | 745277442   | 1425674947  |
-| 2200 | 6,161    | 2072120207  | 2515419153  |
-| 2600 | 10,27    | 4411931302  | 4113837413  |
-| 3000 | 15,753   | 6779037601  | 6332366591  |
+<table align=center>
+  <td>
+    <table>
+      <tr>
+          <td>Size</td>
+          <td>Time (s)</td>
+          <td>Level 1 DCM</td>
+          <td>Level 2 DCM</td>
+      </tr>
+      <tr>
+          <td>600</td>
+          <td>0,091</td>
+          <td>27102899</td>
+          <td>56652910</td>
+      </tr>
+      <tr>
+          <td>1000</td>
+          <td>0,43</td>
+          <td>125786944</td>
+          <td>261062955</td>
+      </tr>
+      <tr>
+          <td>1400</td>
+          <td>1,514</td>
+          <td>346297957</td>
+          <td>700121534</td>
+      </tr>
+      <tr>
+          <td>1800</td>
+          <td>3,183</td>
+          <td>745277442</td>
+          <td>1425674947</td>
+      </tr>
+      <tr>
+          <td>2200</td>
+          <td>6,161</td>
+          <td>2072120207</td>
+          <td>2515419153</td>
+      </tr>
+      <tr>
+          <td>2600</td>
+          <td>10,27</td>
+          <td>4411931302</td>
+          <td>4113837413</td>
+      </tr>
+      <tr>
+          <td>3000</td>
+          <td>15,753</td>
+          <td>6779037601</td>
+          <td>6332366591</td>
+      </tr>
+    </table>
+  </td>
+  <td>
+    <img style="width:350px" src="../Results and Analysis/C++ Line Multiplication DCM.png"/>
+    <p align=center>Figura 2: C++ Line Multiplication DCM</p>
+  </td>
+</table>
 
-![C++ Line Multiplication DCM.png](https://res.craft.do/user/full/7bd061cb-19dc-2671-33a3-185afbdd05f9/657B05EA-AF10-4DD2-9DC7-0BC03DD084C6_2/xXxcR24tqzWouwTsyvefv8XovghsqT6giH5qPsSWqgkz/C%20Line%20Multiplication%20DCM.png)
-
-| Size  | Time (s) | Level 1 DCM  | Level 2 DCM  |
-| ----- | -------- | ------------ | ------------ |
-| 4096  | 40,279   | 17547752512  | 15707309470  |
-| 6144  | 135,786  | 59147235476  | 52734959866  |
-| 8192  | 322,72   | 140073542249 | 125068329036 |
-| 10240 | 628,837  | 273793089062 | 250892242727 |
+<table align=center>
+    <tr>
+        <td>Size</td>
+        <td>Time (s)</td>
+        <td>Level 1 DCM</td>
+        <td>Level 2 DCM</td>
+    </tr>
+    <tr>
+        <td>4096</td>
+        <td>40,279</td>
+        <td>17547752512</td>
+        <td>15707309470</td>
+    </tr>
+    <tr>
+        <td>6144</td>
+        <td>135,786</td>
+        <td>59147235476</td>
+        <td>52734959866</td>
+    </tr>
+    <tr>
+        <td>8192</td>
+        <td>322,72</td>
+        <td>140073542249</td>
+        <td>125068329036</td>
+    </tr>
+    <tr>
+        <td>10240</td>
+        <td>628,837</td>
+        <td>273793089062</td>
+        <td>250892242727</td>
+    </tr>
+</table>
 
 Em comparação com a multiplicação através do método algébrico, há uma melhoria nas métricas de desempenho, devido ao algoritmo tirar vantagem dos valores já alocados em cache. A utilização de um diferente algoritmo permite a obtenção de melhores tempos e de menores *data cache misses*.
 
 **Java Performance:**
 
-| Size | Time (s) |
-| ---- | -------- |
-| 600  | 0,362    |
-| 1000 | 0,581    |
-| 1400 | 1,824    |
-| 1800 | 4,43     |
-| 2200 | 10,978   |
-| 2600 | 18,211   |
-| 3000 | 28,094   |
+<table align=center>
+    <tr>
+        <td>Size</td>
+        <td>Time (s)</td>
+    </tr>
+    <tr>
+        <td>600</td>
+        <td>0,362</td>
+    </tr>
+    <tr>
+        <td>1000</td>
+        <td>0,581</td>
+    </tr>
+    <tr>
+        <td>1400</td>
+        <td>1,824</td>
+    </tr>
+    <tr>
+        <td>1800</td>
+        <td>4,43</td>
+    </tr>
+    <tr>
+        <td>2200</td>
+        <td>10,978</td>
+    </tr>
+    <tr>
+        <td>2600</td>
+        <td>18,211</td>
+    </tr>
+    <tr>
+        <td>3000</td>
+        <td>28,094</td>
+    </tr>
+</table>
 
 Em Java, apesar de o tempo de execução ser menor com a utilização de outro algoritmo, ainda existe um acréscimo ao de tempo na sua execução em comparação com C++.
 
 **C++ vs Java:**
 
-![C++ Time Performance.png](https://res.craft.do/user/full/7bd061cb-19dc-2671-33a3-185afbdd05f9/C3FB3615-6489-4D57-B9F3-DCEA4F3767F8_2/IvnX3xYdU7xBE1uFWqOm2mnlxlefm6V3em9VMlWDCT4z/C%20Time%20Performance.png)
-
-![Java Time Performance.png](https://res.craft.do/user/full/7bd061cb-19dc-2671-33a3-185afbdd05f9/BF573BB4-781F-45A4-8385-294F212DBAD4_2/2qvxUuULp8jGKI6Vx2b5C4kGQkMGgfXgTccHuuSYox8z/Java%20Time%20Performance.png)
+<table align=center>
+  <td>
+    <img style="width:350px" src="../Results and Analysis/C++ Time Performance.png"/>
+    <p align=center>Figura 2: C++ Time Performance</p>
+  </td>
+  <td>
+    <img style="width:350px" src="../Results and Analysis/Java Time Performance.png"/>
+    <p align=center>Figura 3: Java Time Performance</p>
+  </td>
+</table>
 
 A partir dos gráficos acima e dos resultados obtidos, que não há uma diferença significativa no tempo de execução dos algoritmos, independentemente da utilização de C++ ou de Java, sendo o mais evidente, o tempo de execução em matrizes de dimensões superiores na multiplicação em linha.
 
@@ -124,36 +309,125 @@ A partir dos gráficos acima e dos resultados obtidos, que não há uma diferen�
 
 **Block Size = 128**
 
-| Size  | Time (s) | Level 1 DCM | Level 2 DCM  |
-| ----- | -------- | ----------- | ------------ |
-| 4096  | 38,866   | 9816072352  | 33532269676  |
-| 6144  | 131,067  | 9131318958  | 112528948104 |
-| 8192  | 281,226  | 8765175603  | 262099357363 |
-| 10240 | 618,003  | 33119770223 | 508501463014 |
+<table align=center>
+  <tr>
+      <td>Size</td>
+      <td>Time (s)</td>
+      <td>Level 1 DCM</td>
+      <td>Level 2 DCM</td>
+  </tr>
+  <tr>
+      <td>4096</td>
+      <td>38,866</td>
+      <td>9816072352</td>
+      <td>33532269676</td>
+  </tr>
+  <tr>
+      <td>6144</td>
+      <td>131,067</td>
+      <td>9131318958</td>
+      <td>112528948104</td>
+  </tr>
+  <tr>
+      <td>8192</td>
+      <td>281,226</td>
+      <td>8765175603</td>
+      <td>262099357363</td>
+  </tr>
+  <tr>
+      <td>10240</td>
+      <td>618,003</td>
+      <td>33119770223</td>
+      <td>508501463014</td>
+  </tr>
+</table>
 
 **Block Size = 256**
 
-| Size  | Time (s) | Level 1 DCM | Level 2 DCM  |
-| ----- | -------- | ----------- | ------------ |
-| 4096  | 34,87    | 30810947444 | 23616455632  |
-| 6144  | 118,091  | 29605837694 | 76446923679  |
-| 8192  | 402,54   | 78525145239 | 160980671603 |
-| 10240 | 564,167  | 73089269641 | 352351742155 |
+<table align=center>
+  <tr>
+      <td>Size</td>
+      <td>Time (s)</td>
+      <td>Level 1 DCM</td>
+      <td>Level 2 DCM</td>
+  </tr>
+  <tr>
+      <td>4096</td>
+      <td>34,87</td>
+      <td>30810947444</td>
+      <td>23616455632</td>
+  </tr>
+  <tr>
+      <td>6144</td>
+      <td>118,091</td>
+      <td>29605837694</td>
+      <td>76446923679</td>
+  </tr>
+  <tr>
+      <td>8192</td>
+      <td>402,54</td>
+      <td>78525145239</td>
+      <td>160980671603</td>
+  </tr>
+  <tr>
+      <td>10240</td>
+      <td>564,167</td>
+      <td>73089269641</td>
+      <td>352351742155</td>
+  </tr>
+</table>
 
 **Block Size = 512**
 
-| Size  | Time (s) | Level 1 DCM  | Level 2 DCM  |
-| ----- | -------- | ------------ | ------------ |
-| 4096  | 40,795   | 7022062687   | 19395802889  |
-| 6144  | 107,541  | 153312269817 | 66233153737  |
-| 8192  | 341,662  | 142601487187 | 138084006642 |
-| 10240 | 514,313  | 136893056661 | 307158357141 |
+<table align=center>
+  <tr>
+      <td>Size</td>
+      <td>Time (s)</td>
+      <td>Level 1 DCM</td>
+      <td>Level 2 DCM</td>
+  </tr>
+  <tr>
+      <td>4096</td>
+      <td>40,795</td>
+      <td>7022062687</td>
+      <td>19395802889</td>
+  </tr>
+  <tr>
+      <td>6144</td>
+      <td>107,541</td>
+      <td>153312269817</td>
+      <td>66233153737</td>
+  </tr>
+  <tr>
+      <td>8192</td>
+      <td>341,662</td>
+      <td>142601487187</td>
+      <td>138084006642</td>
+  </tr>
+  <tr>
+      <td>10240</td>
+      <td>514,313</td>
+      <td>136893056661</td>
+      <td>307158357141</td>
+  </tr>
+</table>
 
-![C++ Algorithm Time Comparison.png](https://res.craft.do/user/full/7bd061cb-19dc-2671-33a3-185afbdd05f9/EA782CA0-0109-4B4F-98BD-4387563CC8FB_2/vvqoaDp9BCgSMRc0uD1TWrDtrdENS74eAX7UsyputRwz/C%20Algorithm%20Time%20Comparison.png)
+<div align=center>
+  <img style="width:350px;" src="../Results and Analysis/C++ Algorithm Time Comparison.png"/>
+  <p align=center>Figura 4: C++ Algorithm Time Comparison</p>
+</div>
 
-![C++ Level 1 DCM.png](https://res.craft.do/user/full/7bd061cb-19dc-2671-33a3-185afbdd05f9/9FDED5D8-03BF-4751-88AA-2E6717BF9963_2/AoycmRKZmOPuUGd6WD8D91v99jkyYIpRznuGvIdQwNQz/C%20Level%201%20DCM.png)
+<table align=center>
+  <td>
+    <img style="width:350px" src="../Results and Analysis/C++ Level 1 DCM.png"/>
+    <p align=center>Figura 5: C++ Level 1 DCM</p>
+  </td>
+  <td>
+    <img style="width:350px" src="../Results and Analysis/C++ Level 2 DCM.png"/>
+    <p align=center>Figura 5: C++ Level 2 DCM</p>
+  </td>
+</table>
 
-![C++ Level 2 DCM.png](https://res.craft.do/user/full/7bd061cb-19dc-2671-33a3-185afbdd05f9/9CBE34C8-CDF3-4D2E-A169-BDDB837B1E11_2/D4MJYd9O3YEupOuBLx8GHfvOFTlCLZQEelZHNyE2Y2sz/C%20Level%202%20DCM.png)
 
 ## Conclusão
 
