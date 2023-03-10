@@ -1,8 +1,8 @@
 # Performance Evaluation of a single core
 
-In this project, we will study the effect on the processor performance of the memory hierarchy when accessing large amounts of data.
+Neste projeto, iremos realizar um estudo sobre o efeito da performance do processador na memória quando acedemos grandes quantidades de dados.
 
-## Index
+## Índice 
 
 - [Descrição do problema e explicação dos algoritmos](#descrição-do-problema-e-explicação-dos-algoritmos)
 - [Métricas de Desempenho](#métricas-de-desempenho)
@@ -11,15 +11,19 @@ In this project, we will study the effect on the processor performance of the me
 
 ## Descrição do problema e explicação dos algoritmos
 
-Sendo este o primeiro trabalho proposto no âmbito da cadeira de Computação Paralela e Distribuída, tínhamos como objetivo comparar e analisar o desempenho de um cpu em diferentes situações apresentadas. Como é do nosso conhecimento, esse desempenho depende de diversos fatores tais como a gestão de memória num determinado programa, a utilização de diferentes algoritmos, a linguagem de programação utilizada e até das próprias características físicas do processador.
+O objetivo deste projeto é comparar e analisar o desempenho de um cpu em diferentes situações apresentadas. Como é do nosso conhecimento, esse desempenho depende de diversos fatores tais como a gestão de memória num determinado programa, a utilização de diferentes algoritmos, a linguagem de programação utilizada e até das próprias características físicas do processador.
 
 Como tal, iremos apresentar neste relatório algumas abordagens em relação à multiplicação de matrizes e identificar as principais diferenças entre cada uma delas. Para a realização destes testes utilizamos a API PAPI assim como C++ e Java como linguagens de programação.
 
 #### Multiplicação de matrizes pelo método algébrico
 
-O primeiro exercício deste trabalho envolvia a multiplicação de matrizes pelo método mais comumente utilizado, ou seja, o produto das matrizes A = (aij) (m x p) e B = (bij) (p x n) seria a matriz C = (cij) (m x n), em que cada elemento cij é calculado com a soma dos produtos dos elementos da linha i de A com os elementos da coluna j de B.
+O primeiro exercício deste trabalho envolvia a multiplicação de matrizes pelo método mais utilizado, ou seja, o produto das matrizes A = (aij) (m x p) e B = (bij) (p x n) seria a matriz C = (cij) (m x n), em que cada elemento cij é calculado com a soma dos produtos dos elementos da linha i de A com os elementos da coluna j de B.
 
 ![Image.png](https://lh4.googleusercontent.com/_GnNICo7t-ZLB7jtIjdulsGbhZN4iuX-tdVnz0bWIvkHX4LkLkc6h8E-yeQfqSNfAlyCJNpqIqt7kvGFOsqlFSFESoSan6RR1hoLg7ePZ2IXLk1z0rxYZEYfxNgCFvDJboyWjkbJ_x5Fh21ttjI7mXE)
+
+```
+
+```
 
 #### Multiplicação por linhas
 
@@ -35,7 +39,7 @@ Tal como nos foi proposto, para medir o desempenho do processador no cálculo de
 
 Para além disso utilizamos o PAPI (Performance API) de forma a coletar valores úteis como o número de cache misses nos níveis L1 e L2 da cache.
 
-Na avaliação de resultados tivemos também em conta a  dimensão das matrizes pelo que foi um dos aspetos propostos para este trabalho.
+Na avaliação de resultados tivemos também em conta a dimensão das matrizes pelo que foi um dos aspetos propostos para este trabalho.
 
 ## Resultados e Análise
 
@@ -252,38 +256,46 @@ Em comparação com a multiplicação através do método algébrico, há uma me
 **Java Performance:**
 
 <table align=center>
-    <tr>
-        <td>Size</td>
-        <td>Time (s)</td>
-    </tr>
-    <tr>
-        <td>600</td>
-        <td>0,362</td>
-    </tr>
-    <tr>
-        <td>1000</td>
-        <td>0,581</td>
-    </tr>
-    <tr>
-        <td>1400</td>
-        <td>1,824</td>
-    </tr>
-    <tr>
-        <td>1800</td>
-        <td>4,43</td>
-    </tr>
-    <tr>
-        <td>2200</td>
-        <td>10,978</td>
-    </tr>
-    <tr>
-        <td>2600</td>
-        <td>18,211</td>
-    </tr>
-    <tr>
-        <td>3000</td>
-        <td>28,094</td>
-    </tr>
+  <td>
+    <table>
+      <tr>
+          <td>Size</td>
+          <td>Time (s)</td>
+      </tr>
+      <tr>
+          <td>600</td>
+          <td>0,362</td>
+      </tr>
+      <tr>
+          <td>1000</td>
+          <td>0,581</td>
+      </tr>
+      <tr>
+          <td>1400</td>
+          <td>1,824</td>
+      </tr>
+    </table>
+  </td>
+  <td>
+    <table>
+      <tr>
+          <td>1800</td>
+          <td>4,43</td>
+      </tr>
+      <tr>
+          <td>2200</td>
+          <td>10,978</td>
+      </tr>
+      <tr>
+          <td>2600</td>
+          <td>18,211</td>
+      </tr>
+      <tr>
+          <td>3000</td>
+          <td>28,094</td>
+      </tr>
+    </table>
+  </td>
 </table>
 
 Em Java, apesar de o tempo de execução ser menor com a utilização de outro algoritmo, ainda existe um acréscimo ao de tempo na sua execução em comparação com C++.
@@ -301,13 +313,13 @@ Em Java, apesar de o tempo de execução ser menor com a utilização de outro a
   </td>
 </table>
 
-A partir dos gráficos acima e dos resultados obtidos, que não há uma diferença significativa no tempo de execução dos algoritmos, independentemente da utilização de C++ ou de Java, sendo o mais evidente, o tempo de execução em matrizes de dimensões superiores na multiplicação em linha.
+A partir dos gráficos acima e dos resultados obtidos, é possível verificar que para ambas as linguagens os tempos são comparáveis na execução dos algoritmos, no entanto, em C++ é ligeiramente mais rápido.
 
 3. #### Multiplicação por Blocos
 
 **C++ Performance:**
 
-**Block Size = 128**
+<b align=center>Block Size = 128</b>
 
 <table align=center>
   <tr>
@@ -342,7 +354,7 @@ A partir dos gráficos acima e dos resultados obtidos, que não há uma diferen�
   </tr>
 </table>
 
-**Block Size = 256**
+<b align=center>Block Size = 256</b>
 
 <table align=center>
   <tr>
@@ -377,7 +389,7 @@ A partir dos gráficos acima e dos resultados obtidos, que não há uma diferen�
   </tr>
 </table>
 
-**Block Size = 512**
+<b align=center>Block Size = 512</b>
 
 <table align=center>
   <tr>
@@ -428,6 +440,11 @@ A partir dos gráficos acima e dos resultados obtidos, que não há uma diferen�
   </td>
 </table>
 
+Este tipo de abordagem pretendia tirar partido do menor número de chamadas à memória. Isto acontecia devido ao facto de dividirmos a matriz em blocos mais pequenos, o que por sua vez subdivide o problema.  Por fim, a multiplicação por blocos resulta em números de cache misses mais baixos.
+
+Durante os testes neste tipo de multiplicação de matrizes, usamos três tamanhos de blocos para as subdividir: 128, 256 e 512. O que pudemos observar foi que à medida que aumentamos o tamanho desses blocos o desempenho iria aumentar na maioria das vezes.
 
 ## Conclusão
+
+De certa forma este trabalho contribuiu para uma melhor perceção acerca do desempenho de um processador e como vários fatores o podem influenciar, desde diferentes algoritmos, alocação mais eficiente de memória (o que nos leva também à linguagem de programação utilizada) e por fim, aos diferentes métodos de gerência de processos, neste caso relativo à multiplicação de matrizes.
 
