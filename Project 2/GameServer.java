@@ -42,7 +42,15 @@ public class GameServer {
             PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true);
 
             // Authenticate user
-            if (authenticateUser(reader, writer)) {
+            BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
+
+            System.out.println("Welcome to the game! Please authenticate to play.");
+            System.out.println("1. Existing User");
+            System.out.println("2. New User");
+
+            String choice = consoleReader.readLine();
+
+            if (authenticateUser(reader, writer, choice)) {
                 authenticatedUsers.add(clientSocket);
                 writer.println("Authenticated successfully. You are now in the game queue.");
 
@@ -58,21 +66,48 @@ public class GameServer {
             } else {
                 writer.println("Authentication failed. Please try again.");
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private boolean authenticateUser(BufferedReader reader, PrintWriter writer) throws IOException {
-        writer.println("Enter your username:");
-        String username = reader.readLine();
+    private boolean authenticateUser(BufferedReader reader, PrintWriter writer, String choice) throws IOException {
+        BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
+        if (choice.equals("1")) {
+            // Existing User
+            System.out.print("Username: ");
+            String username = consoleReader.readLine();
+            writer.println(username);
 
-        writer.println("Enter your password:");
-        String password = reader.readLine();
+            System.out.print("Password: ");
+            String password = consoleReader.readLine();
+            writer.println(password);
+        } else if (choice.equals("2")) {
+            // New User
+            System.out.println("Creating a new user.");
+            System.out.print("Enter a username: ");
+            String username = consoleReader.readLine();
 
-        // Add your authentication logic here (e.g., check against a user database)
+            System.out.print("Enter a password: ");
+            String password = consoleReader.readLine();
 
-        return true; // Placeholder for successful authentication
+            writer.println("NEW_USER");
+            writer.println(username);
+            writer.println(password);
+        } else {
+            System.out.println("Invalid choice.");
+            return false;
+        }
+
+        String response = reader.readLine();
+        if (response.equals("AUTHENTICATED")) {
+            System.out.println("Authenticated successfully.");
+            return true;
+        } else {
+            System.out.println("Authentication failed. Please try again.");
+            return false;
+        }
     }
 
     public static void main(String[] args) {
